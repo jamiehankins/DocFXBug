@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties docfx_1json__JsonSchema="..\..\..\schemastore\src\schemas\json\docfx.json" /></VisualStudio></ProjectExtensions>
+
+</Project>
