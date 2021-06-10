@@ -6,4 +6,20 @@
 
   <ProjectExtensions><VisualStudio><UserProperties docfx_1json__JsonSchema="..\..\..\schemastore\src\schemas\json\docfx.json" /></VisualStudio></ProjectExtensions>
 
+  <ItemGroup>
+    <PackageReference Include="docfx.console" Condition="$(Configuration.Contains('All'))" Version="2.58.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="memberpage" Condition="$(Configuration.Contains('All'))" Version="2.58.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="CleanDocFX" AfterTargets="Clean">
+    <Message Text="Cleaning up DocFX generated documentation." Importance="high" />
+    <RemoveDir Directories="..\docs\_site\" />
+  </Target>
+
 </Project>
