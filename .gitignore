@@ -366,4 +366,5 @@ FodyWeavers.xsd
 /TestLib/docs/_site
 /TestLib/docs/api/*
 !/TestLib/docs/api/index.md
+/TestLib/docs/memberpage.*
 /TestLib/src/log.txt

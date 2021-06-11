@@ -1,25 +1,44 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties docfx_1json__JsonSchema="..\..\..\schemastore\src\schemas\json\docfx.json" /></VisualStudio></ProjectExtensions>
+  
+  <!-- Clean up DocFX output -->
+  <Target Name="CleanDocFX" AfterTargets="DocClean">
+    <Message Text="Cleaning up DocFX generated documentation." Importance="high" />
+    <RemoveDir Directories="..\docs\_site\" />
+  </Target>
 
+  <!-- Prepare memberpage -->
+  <Target Name="SetNugetPackageRoot" BeforeTargets="DocBuild">
+    <Message Text="Copying memberpage." Importance="high" />
+    <ItemGroup>
+      <memberpageFiles Include="$(NugetPackageRoot)memberpage\2.58.0\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(memberPageFiles)"
+          DestinationFolder="$(ProjectDir)..\docs\memberpage.2.58.0\%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+  
   <ItemGroup>
-    <PackageReference Include="docfx.console" Condition="$(Configuration.Contains('All'))" Version="2.58.0">
+    <PackageReference Include="docfx.console" Version="2.58.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="memberpage" Condition="$(Configuration.Contains('All'))" Version="2.58.0">
+    <PackageReference Include="memberpage" Version="2.58.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
+  <!--
   <Target Name="CleanDocFX" AfterTargets="Clean">
     <Message Text="Cleaning up DocFX generated documentation." Importance="high" />
     <RemoveDir Directories="..\docs\_site\" />
   </Target>
+  -->
 
 </Project>
