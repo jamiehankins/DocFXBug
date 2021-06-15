@@ -4,8 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties docfx_1json__JsonSchema="..\..\..\schemastore\src\schemas\json\docfx.json" /></VisualStudio></ProjectExtensions>
-  
   <!-- Clean up DocFX output -->
   <Target Name="CleanDocFX" AfterTargets="DocClean">
     <Message Text="Cleaning up DocFX generated documentation." Importance="high" />
